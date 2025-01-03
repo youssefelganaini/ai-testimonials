@@ -1,47 +1,37 @@
-import React, { useState } from "react";
-import { Send } from "lucide-react";
+import React from "react";
+import { useForm, ValidationError } from "@formspree/react";
 
 export function WaitlistForm() {
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+  const [state, handleSubmit] = useForm("xkggpjvb");
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // TODO: Integrate with actual waitlist system
-    setSubmitted(true);
-  };
+  if (state.succeeded) {
+    return (
+      <div className="text-center py-4 text-green-600">
+        Thanks for joining! We'll notify you when we launch.
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-md mx-auto">
-      {!submitted ? (
-        <form
-          onSubmit={handleSubmit}
-          className="mt-3 sm:flex"
-          action="https://formspree.io/f/xkggpjvb"
-          method="POST"
+      <form onSubmit={handleSubmit} className="mt-3 sm:flex sm:items-center">
+        <input
+          id="email"
+          type="email"
+          name="email"
+          required
+          className="flex-grow rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-4 py-2"
+          placeholder="Enter your email"
+        />
+        <ValidationError prefix="Email" field="email" errors={state.errors} />
+        <button
+          type="submit"
+          className="ml-3 inline-flex items-center justify-center px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+          disabled={state.submitting}
         >
-          <input
-            type="email"
-            name="email"
-            required
-            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-4"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <button
-            type="submit"
-            className="mt-3 sm:mt-0 sm:ml-3 inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
-          >
-            Join Waitlist
-            {/* <Send className="ml-2 h-4 w-4" /> */}
-          </button>
-        </form>
-      ) : (
-        <div className="text-center py-4 text-green-600">
-          Thanks for joining! We'll notify you when we launch.
-        </div>
-      )}
+          Join Waitlist
+        </button>
+      </form>
     </div>
   );
 }
