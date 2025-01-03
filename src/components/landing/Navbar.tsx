@@ -16,7 +16,7 @@ export function Navbar() {
           <div className="flex items-center">
             <Sparkles className="h-8 w-8 text-indigo-600" />
             <span className="ml-2 text-xl font-semibold text-gray-900">
-              TestiTransform
+              Proof Genie
             </span>
           </div>
 
