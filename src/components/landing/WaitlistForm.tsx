@@ -14,9 +14,15 @@ export function WaitlistForm() {
   return (
     <div className="max-w-md mx-auto">
       {!submitted ? (
-        <form onSubmit={handleSubmit} className="mt-3 sm:flex">
+        <form
+          onSubmit={handleSubmit}
+          className="mt-3 sm:flex"
+          action="https://formspree.io/f/xkggpjvb"
+          method="POST"
+        >
           <input
             type="email"
+            name="email"
             required
             className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-4"
             placeholder="Enter your email"

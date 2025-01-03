@@ -5,7 +5,8 @@ const steps = [
   {
     icon: Upload,
     title: "Upload Your Testimonials",
-    description: "Simply paste your customer testimonials into our platform.",
+    description:
+      "Simply paste your customer testimonials or allow customer to fill out your custom form.",
   },
   {
     icon: Wand2,
